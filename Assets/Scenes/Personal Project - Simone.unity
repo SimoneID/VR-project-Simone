@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3829,7 +3829,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 9f5a24a380916d14db9775daab4fe333,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
@@ -3881,7 +3881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TagToCheck: Player
-  vibAudio: {fileID: 8300000, guid: c60b8ac4916103d41abbb35a9287ff09, type: 3}
+  vibAudio: {fileID: 8300000, guid: cc4358f7b0d2fa2409a84eef73d956f8, type: 3}
 --- !u!65 &1888540999
 BoxCollider:
   m_ObjectHideFlags: 0

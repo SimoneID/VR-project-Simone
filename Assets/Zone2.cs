@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.UI;
+using UnityEngine.UI;
 
 public class Zone2 : MonoBehaviour
 {
@@ -29,10 +29,25 @@ public class Zone2 : MonoBehaviour
         {
             // players now in the zone - start the effect
             if (PlayersInZone2.Count == 0)
+                TriggerVibration(vibAudio);
+                //VibrationManager.singleton.TriggerVibration(vibAudio, OVRInput.Controller.LTouch);
                 GetComponent<AudioSource>().PlayOneShot(vibAudio);
-                VibrationManager.singleton.TriggerVibration(vibAudio, OVRInput.Controller.Touch);
+
             Debug.Log("Player is in the zone now");
             PlayersInZone2.Add(other.gameObject);       
         }
     }
+
+    void TriggerVibration(AudioClip vibrationAudio)
+    {
+        OVRHapticsClip clip = new OVRHapticsClip(vibrationAudio);
+        OVRHaptics.LeftChannel.Clear();
+        OVRHaptics.LeftChannel.Queue(clip);
+
+        //if (controller == OVRInput.Controller.LTouch)
+        //{
+        //    OVRHaptics.LeftChannel.Preempt(clip);
+        //}
+    }
+
 }
