@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+//using UnityEngine.UI;
 
 public class Zone2 : MonoBehaviour
 {
     [SerializeField] string TagToCheck = "Player"; //You can overwrite this in the field in Unity
-    List<GameObject> PlayersInZone = new List<GameObject>();
+    List<GameObject> PlayersInZone2 = new List<GameObject>();
 
-    public AudioClip vibrationAudio;
+    public AudioClip vibAudio;
 
 
     // Start is called before the first frame update
@@ -28,17 +28,11 @@ public class Zone2 : MonoBehaviour
         if (other.CompareTag(TagToCheck))
         {
             // players now in the zone - start the effect
-            if (PlayersInZone.Count == 0)
-            {
-                VibrationManager.singleton.TriggerVibration(vibrationAudio, OVRInput.Controller.Touch);
-
-                GetComponent<AudioSource>().PlayOneShot(vibrationAudio);
-                
-                Debug.Log("Player is in the zone now");
-                PlayersInZone.Add(other.gameObject);
-            }
-                
-
+            if (PlayersInZone2.Count == 0)
+                GetComponent<AudioSource>().PlayOneShot(vibAudio);
+                VibrationManager.singleton.TriggerVibration(vibAudio, OVRInput.Controller.Touch);
+            Debug.Log("Player is in the zone now");
+            PlayersInZone2.Add(other.gameObject);       
         }
     }
 }

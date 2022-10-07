@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class VibrationManager : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class VibrationManager : MonoBehaviour
    {
        OVRHapticsClip clip = new OVRHapticsClip(vibrationAudio);
 
-        if(controller == OVRInput.Controller.LTouch)
+        if(controller == OVRInput.Controller.Touch)
         {
             OVRHaptics.LeftChannel.Preempt(clip);
         }
