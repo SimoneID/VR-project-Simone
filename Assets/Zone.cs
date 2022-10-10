@@ -28,7 +28,8 @@ public class Zone : MonoBehaviour
         {
             // players now in the zone - start the effect
             if (PlayersInZone.Count == 0)
-                ActiveEffect = HapticManager.PlayEffect(HapticEffect, transform.position);
+                HapticController.SendHaptics(0.4f, 0.5f);
+                //ActiveEffect = HapticManager.PlayEffect(HapticEffect, transform.position);
             Debug.Log("Player is in the zone now");
 
             PlayersInZone.Add(other.gameObject);
