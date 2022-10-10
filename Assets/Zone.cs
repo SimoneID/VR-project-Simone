@@ -13,7 +13,7 @@ public class Zone : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {      
+    {
     }
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class Zone : MonoBehaviour
         {
             // players now in the zone - start the effect
             if (PlayersInZone.Count == 0)
-                HapticController.SendHaptics(0.4f, 0.5f);
+                HapticController.SendHaptics(false, 0.4f, 0.5f);
                 //ActiveEffect = HapticManager.PlayEffect(HapticEffect, transform.position);
             Debug.Log("Player is in the zone now");
 

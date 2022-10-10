@@ -1,9 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class HapticController : MonoBehaviour
 {
-    public static XRBaseController leftController, rightController;
+    public static XRBaseController leftController;
+    public static XRBaseController rightController;
     public float defaultAmplitude = 0.2f;
     public float defaultDuration = 0.5f;
 
