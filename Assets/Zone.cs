@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Zone : MonoBehaviour
 {
+    HapticController neededScript;
+
+    public AudioSource audioSource;
+    public AudioClip HBAudio;
+    public float volume = 0.5f;
+
     [SerializeField] string TagToCheck = "Player"; //You can overwrite this in the field in Unity
     [SerializeField] HapticEffectSO HapticEffect;
 
@@ -14,28 +20,29 @@ public class Zone : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        neededScript = GameObject.FindGameObjectWithTag("Needed").GetComponent<HapticController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+
     }
 
-    void OnTriggerEnter(Collider other) //Collider only reacts to objects with a RigidBody (so not the MainCamera or Controllers)
-    {
-        if (other.CompareTag(TagToCheck))
+        void OnTriggerEnter(Collider other) //Collider only reacts to objects with a RigidBody (so not the MainCamera or Controllers)
         {
-            // players now in the zone - start the effect
-            if (PlayersInZone.Count == 0)
-                HapticController.SendHaptics(false, 0.4f, 0.5f);
-                //ActiveEffect = HapticManager.PlayEffect(HapticEffect, transform.position);
-            Debug.Log("Player is in the zone now");
-
-            PlayersInZone.Add(other.gameObject);
-                            
+            if (other.CompareTag(TagToCheck))
+            {
+                // players now in the zone - start the effect
+                if (PlayersInZone.Count == 0)
+                    neededScript.SendHaptics(0.4f, 0.5f);
+                    audioSource.PlayOneShot(HBAudio, volume);
+                    //ActiveEffect = HapticManager.PlayEffect(HapticEffect, transform.position);
+                Debug.Log("Player is in the zone now");
+                PlayersInZone.Add(other.gameObject);
+            }
         }
-    }
+    
 
     void OnTriggerExit(Collider other)
     {

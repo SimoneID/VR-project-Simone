@@ -1,27 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
+//using UnityEngine.XR;
 
 public class VibrationManager : MonoBehaviour
 {
-    //public static VibrationManager singleton;
+    public static VibrationManager singleton;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        //if (singleton && singleton != this)
-        //    Destroy(this);
-        //else
-        //    singleton = this;
+        if (singleton && singleton != this)
+            Destroy(this);
+        else
+            singleton = this;
     }
 
-    public void TriggerVibration(AudioClip vibrationAudio)
-   {
-       OVRHapticsClip clip = new OVRHapticsClip(vibrationAudio);
-       OVRHaptics.LeftChannel.Clear();
-       OVRHaptics.LeftChannel.Queue(clip);
+    public void TriggerVibration(AudioClip vibrationAudio, OVRInput.Controller controller)
+    {
+        OVRHapticsClip clip = new OVRHapticsClip(vibrationAudio);
+        OVRHaptics.LeftChannel.Preempt(clip);
 
         //if (controller == OVRInput.Controller.LTouch)
         //{

@@ -5,8 +5,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class HapticController : MonoBehaviour
 {
-    public static XRBaseController leftController;
-    public static XRBaseController rightController;
+    [SerializeField] public XRBaseController leftController;
+    [SerializeField] public XRBaseController rightController;
     public float defaultAmplitude = 0.2f;
     public float defaultDuration = 0.5f;
 
@@ -18,13 +18,13 @@ public class HapticController : MonoBehaviour
         rightController.SendHapticImpulse(defaultAmplitude, defaultDuration);
     }
 
-    public static void SendHaptics(float amplitude, float duration)
+    public void SendHaptics(float amplitude, float duration)
     {
         leftController.SendHapticImpulse(amplitude, duration);
         rightController.SendHapticImpulse(amplitude, duration);
     }
 
-    public static void SendHaptics(bool isLeftController, float amplitude, float duration)
+    public void SendHaptics(bool isLeftController, float amplitude, float duration)
     {
         if (isLeftController)
         {
@@ -36,7 +36,7 @@ public class HapticController : MonoBehaviour
         }        
     }
 
-    public static void SendHaptics(XRBaseController controller, float amplitude, float duration)
+    public void SendHaptics(XRBaseController controller, float amplitude, float duration)
     {
         controller.SendHapticImpulse(amplitude, duration);
     }
