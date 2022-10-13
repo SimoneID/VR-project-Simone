@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Zone : MonoBehaviour
 {
-    HapticController neededScript;
+    //HapticController neededScript;
 
     public AudioSource audioSource;
-    public AudioClip HBAudio;
+    public AudioClip TestAudio;
     public float volume = 0.5f;
 
     [SerializeField] string TagToCheck = "Player"; //You can overwrite this in the field in Unity
@@ -20,13 +20,7 @@ public class Zone : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        neededScript = GameObject.FindGameObjectWithTag("Needed").GetComponent<HapticController>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        //neededScript = GameObject.FindGameObjectWithTag("Needed").GetComponent<HapticController>(); //reference to simple haptic script
     }
 
         void OnTriggerEnter(Collider other) //Collider only reacts to objects with a RigidBody (so not the MainCamera or Controllers)
@@ -35,9 +29,9 @@ public class Zone : MonoBehaviour
             {
                 // players now in the zone - start the effect
                 if (PlayersInZone.Count == 0)
-                    neededScript.SendHaptics(0.4f, 0.5f);
-                    audioSource.PlayOneShot(HBAudio, volume);
-                    //ActiveEffect = HapticManager.PlayEffect(HapticEffect, transform.position);
+                    audioSource.PlayOneShot(TestAudio, volume);
+                    ActiveEffect = HapticManager.PlayEffect(HapticEffect, transform.position);
+                    //neededScript.SendHaptics(0.4f, 0.8f);
                 Debug.Log("Player is in the zone now");
                 PlayersInZone.Add(other.gameObject);
             }
@@ -53,9 +47,10 @@ public class Zone : MonoBehaviour
             // no players left in the zone, stop the effect
             if (PlayersInZone.Count == 0)
             {
-                Debug.Log("Player is out the zone now");
                 HapticManager.StopEffect(ActiveEffect);
                 ActiveEffect = null;
+                //neededScript.SendHaptics(0.4f, 0.4f);
+                Debug.Log("Player is out the zone now");
             }
         }
     }

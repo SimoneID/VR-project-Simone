@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 //using UnityEngine.InputSystem;
 
 
 
 public class HapticManager : MonoBehaviour
 {
+    [SerializeField] public XRBaseController leftController;
+    [SerializeField] public XRBaseController rightController;
     public static HapticManager Instance { get; private set; } = null;
 
     List<HapticEffectSO> ActiveEffects = new List<HapticEffectSO>();
@@ -43,36 +45,36 @@ public class HapticManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //float lowSpeedMotor = 0f;
-        //float highSpeedMotor = 0f;
+        float vibSpeedMotor = 0f;
 
         for (int index = 0; index < ActiveEffects.Count; ++index)
         {
             var effect = ActiveEffects[index];
 
             // tick the effect and clean up if finished
-            float lowSpeedComponent = 0f;
-            float highSpeedComponent = 0f;
-            if (effect.Tick(Camera.main.transform.position, out lowSpeedComponent, out highSpeedComponent))
+            float vibSpeedComponent = 0f;
+            
+            if (effect.Tick(Camera.main.transform.position, out vibSpeedComponent))
             {
                 ActiveEffects.RemoveAt(index);
                 --index;
             }
 
-            //lowSpeedMotor = Mathf.Clamp01(lowSpeedComponent + lowSpeedMotor);
-            //highSpeedMotor = Mathf.Clamp01(highSpeedComponent + highSpeedMotor);
+            vibSpeedMotor = Mathf.Clamp01(vibSpeedComponent + vibSpeedMotor);
 
-            //Debug.Log(lowSpeedComponent + ", " + highSpeedComponent);
-            //Debug.Log("Player is in the zone now");
+            //Debug.Log(highSpeedComponent);
+            Debug.Log("Player is in the zone now");
         }
 
         //Gamepad.current.SetMotorSpeeds(lowSpeedMotor, highSpeedMotor);
+        leftController.SendHapticImpulse(vibSpeedMotor, 1f);
     }
 
-    //    void OnDestroy()
-    //    {
-    //        Gamepad.current.SetMotorSpeeds(0f, 0f);
-    //    }
+    void OnDestroy()
+    {
+        leftController.SendHapticImpulse(0f,0f);
+        rightController.SendHapticImpulse(0f, 0f);
+    }
 
 
     HapticEffectSO PlayEffect_Internal(HapticEffectSO effect, Vector3 location)

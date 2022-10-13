@@ -16,11 +16,8 @@ public class HapticEffectSO : ScriptableObject
 
     [SerializeField] float Duration = 0f;
 
-    [SerializeField] float LowSpeedIntensity = 1f;
-    [SerializeField] AnimationCurve LowSpeedMotor;
-
-    [SerializeField] float HighSpeedIntensity = 1f;
-    [SerializeField] AnimationCurve HighSpeedMotor;
+    [SerializeField] float VibrationIntensity = 1f;
+    [SerializeField] AnimationCurve VibrationCurve;
 
     [SerializeField] bool VariesWithDistance = false;
     [SerializeField] float MaxDistance = 25f;
@@ -34,7 +31,7 @@ public class HapticEffectSO : ScriptableObject
         Progress = 0f;
     }
 
-    public bool Tick(Vector3 receiverPosition, out float lowSpeed, out float highSpeed)
+    public bool Tick(Vector3 receiverPosition, out float vibSpeed)
     {
         // update the progess
         Progress += Time.deltaTime / Duration;
@@ -47,8 +44,7 @@ public class HapticEffectSO : ScriptableObject
             distanceFactor = distance  >= MaxDistance ? 0f : FallOffCurve.Evaluate( distance / MaxDistance);
         }
 
-        lowSpeed = LowSpeedIntensity * distanceFactor * LowSpeedMotor.Evaluate(Progress);
-        highSpeed = HighSpeedIntensity * distanceFactor * HighSpeedMotor.Evaluate(Progress);
+        vibSpeed = VibrationIntensity * distanceFactor * VibrationCurve.Evaluate(Progress);
 
         // Check if finished
         if (Progress >= 1f)

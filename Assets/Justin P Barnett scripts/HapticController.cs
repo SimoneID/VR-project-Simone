@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
+//This script allows for sending simple haptic impulses, it allows for setting the amplitude, duration, and controller.
+
 public class HapticController : MonoBehaviour
 {
     [SerializeField] public XRBaseController leftController;
@@ -41,5 +43,3 @@ public class HapticController : MonoBehaviour
         controller.SendHapticImpulse(amplitude, duration);
     }
 }
-
-//Note to self: the 'static' makes sure I can access it from another script by saying 'HapticController.SendHaptics(x,x)' and fill in values matching any of the above SendHaptics voids.
