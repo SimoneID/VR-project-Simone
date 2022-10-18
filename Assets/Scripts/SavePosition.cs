@@ -38,7 +38,8 @@ public class SavePosition : MonoBehaviour
         yRot = MainCamera.transform.rotation.y;
         zRot = MainCamera.transform.rotation.z;
 
-        string filePath = @"C:\Users\simone\Documents\testfile.csv"; //On the PC at CWI
+        //string filePath = @"C:\Users\simone\Documents\testfile.csv"; //On the PC at CWI
+        string filePath = @"C:\Users\20173880\Documents\testfile.csv"; //On my laptop
         if (!File.Exists(filePath))
         {
             // Create a file to write to.
