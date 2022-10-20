@@ -2632,6 +2632,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c227e038478a74241b874d6b808504f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Origin: {fileID: 868058739}
+  ActionTime: 2
+  WaitTime: 2
+  HBEffect: {fileID: 11400000, guid: 1901fb0ff2ed5d446a0a79f4204f95fd, type: 2}
 --- !u!1 &875972537
 GameObject:
   m_ObjectHideFlags: 0
