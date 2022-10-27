@@ -54,8 +54,8 @@ public class SavePosition : MonoBehaviour
         //Debug.Log("Values of the rotation are" + xRot + "," + yRot + "," + zRot);
         //File.AppendAllText(filePath, xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + Environment.NewLine);
         
-        string fname = System.DateTime.Now.ToString("HH-mm-ss") + ".csv";
-        //string fname = "Testfile" + ".csv";
+        //string fname = System.DateTime.Now.ToString("HH-mm-ss") + ".csv";
+        string fname = "Testfile" + ".csv";
         string path = Path.Combine(Application.persistentDataPath, fname);
         file = new StreamWriter(path, true);
 

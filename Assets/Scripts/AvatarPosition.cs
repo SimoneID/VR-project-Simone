@@ -5,8 +5,8 @@ using UnityEngine;
 public class AvatarPosition : MonoBehaviour
 {
     [SerializeField] Transform Origin;
-    [SerializeField] float ActionTime = 2f;
-    [SerializeField] float WaitTime = 0.1f;
+    [SerializeField] float ActionTime = 0.5f;
+    [SerializeField] float WaitTime = 1.5f;
     float CurrentProgress = 0f;
     bool IsBusy = true;
     
